@@ -1,134 +1,76 @@
+import 'package:app_portifolio/views/one.page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const OnePage());
+  runApp(const HomePage());
 }
 
-class OnePage extends StatefulWidget {
-  const OnePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<OnePage> createState() => _OnePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _OnePageState extends State<OnePage> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+       drawer: Builder(builder: (context) {
+          return Drawer(
+            child: Column(
+              children: [
+                UserAccountsDrawerHeader(
+                  accountName: Text('Thiago'),
+                  accountEmail: Text('linkedin.com/in/thiago-saleth-a36351211'),
+                  currentAccountPicture: Image.asset('assets/images/Eu.jpg'),
+                  decoration: BoxDecoration(color:  Color.fromARGB(255, 6, 176, 94)),
+                ),
+                ListTile(
+                  leading: Icon(Icons.home, color: Colors.blueAccent),
+                  title: Text('Sobre min', style: TextStyle(fontSize: 20)),
+                  subtitle: Text('Conheça minha historia',
+                      style: TextStyle(fontSize: 16)),
+                  onTap: () {
+                    //pop para fechar o menu
+                    Navigator.of(context).pop();
+                    //push para a homepage
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return OnePage();
+                    }));
+                  },
+                ),
+                ListTile(
+                  leading:
+                      Icon(Icons.phone_paused_sharp, color: Colors.amberAccent),
+                  title: Text('Skills', style: TextStyle(fontSize: 20)),
+                  subtitle: Text('Conheça meus dominios',
+                      style: TextStyle(fontSize: 16)),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return OnePage();
+                    }));
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.app_shortcut, color: Colors.black87),
+                  title: Text('Trajetoria', style: TextStyle(fontSize: 20)),
+                  subtitle: Text('Conheça meus projetos',
+                      style: TextStyle(fontSize: 16)),
+                ),
+              ],
+            ),
+          );
+        }),
         appBar: AppBar(
           backgroundColor: Colors.greenAccent,
           title: Center(
-            child: Text('Skills'),
-          ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.greenAccent,
-          fixedColor: Colors.black,
-          unselectedItemColor: Colors.grey[700],
-          type: BottomNavigationBarType.fixed,
-          currentIndex: 0,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'perfil',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Pesquisa',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.help),
-              label: 'Ajuda',
-            ),
-          ],
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Align(alignment: Alignment.centerLeft),
-                      Text('Nome: Thiago da silva saleth de paula',
-                          style: TextStyle(fontSize: 15)),
-                      Text('Nascimento: 23/02/2002',
-                          style: TextStyle(fontSize: 15)),
-                      Text('Nacionalidade: Belo Horizonte',
-                          style: TextStyle(fontSize: 15)),
-                      Text('Ensino: ADS', style: TextStyle(fontSize: 15)),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Image.asset('assets/images/Eu.jpg', width: 90),
-                    ],
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Column(
-                  children: [
-                    Container(
-                      child:
-                          Text('Minhas skills', style: TextStyle(fontSize: 25)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text('FrontAnd', style: TextStyle(fontSize: 23)),
-                              Text('HTML', style: TextStyle(fontSize: 17)),
-                              Text('CSS', style: TextStyle(fontSize: 17)),
-                              Text('JavaScript',
-                                  style: TextStyle(fontSize: 17)),
-                              Text('BootStrap', style: TextStyle(fontSize: 17)),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                'BackAnd',
-                                style: TextStyle(fontSize: 23),
-                              ),
-                              Text(
-                                'Java',
-                                style: TextStyle(fontSize: 17),
-                              ),
-                              Text(
-                                'Dart',
-                                style: TextStyle(fontSize: 17),
-                              ),
-                              Text(
-                                'Msql',
-                                style: TextStyle(fontSize: 17),
-                              ),
-                              Text(
-                                'Flutter',
-                                style: TextStyle(fontSize: 17),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
+            child: Text('HomePage'),
           ),
         ),
       ),
