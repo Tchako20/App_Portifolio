@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           backgroundColor: Colors.greenAccent,
           title: Center(
-            child: Text('HomePage'),
+            child: Center(child: Text('HomePage')),
           ),
         ),
       ),
